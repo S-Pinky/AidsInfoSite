@@ -1,0 +1,55 @@
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    background: #01c4a6;
+    padding-bottom:30px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    width: 20%;
+    text-align: center;
+}
+.logo-img {
+    width: 40px;
+    height: 40px;
+    margin: 0 5px;
+}
+.logo-text {
+    margin: 0;
+    padding: 0;
+    font-weight: 300;
+    color: ghostwhite;
+    
+}
+.links {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+}
+.linktext {
+    text-decoration: none;
+    color: ghostwhite;
+}
+
+.linktextin {
+    text-decoration: none;
+    color: black;
+}
+.list-button{
+    cursor: pointer;
+}
+.options{
+    background-color: white;
+    border-radius: 5px;
+    position: absolute;
+    top: 60px;
+}
+.option{
+    color: black;
+    padding: 10px;
+}
