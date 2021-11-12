@@ -1,23 +1,127 @@
 .geral-home {
-    background-image: url(../../assets/MedicaIMG.png);
-    background-size: 425px;
-    background-repeat: no-repeat;
-    background-position: 75%;
-    background-color: #01c4a6;
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 600px;
-    padding-left: 10%;
-    padding-right: 10%;
+  background-image: url(../../assets/MedicaIMG.png);
+  background-size: 430px;
+  background-repeat: no-repeat;
+  background-position: 85%;
+  background-color: #01c4a6;
+  margin: 0;
+  padding-bottom: 170px;
+  width: 100%;
+  height: 100%;
+  padding-left: 5%;
+  padding-right: 5%;
 }
-.text{
-    color: ghostwhite;
-    font-size: 20px;
+.text {
+  color: ghostwhite;
+  font-size: 20px;
+  padding-bottom: 30px;
 }
 
 .title-text {
-    padding-top: 70px;
-    margin: 0;
-    font-size: 27px;
+  padding: 0;
+  padding-top: 70px;
+  margin: 0;
+  font-size: 27px;
+}
+
+.types {
+  display: flex;
+  padding: 5px;
+}
+
+.container-input {
+  display: flex;
+  padding: 5px;
+  align-items: center;
+}
+.container {
+  background: rgba(0, 0, 0, 0.08);
+  width: 60%;
+}
+.container-alerts {
+  width: 50%;
+  padding-top: 30px;
+  border-radius: 20px;
+}
+.alerts-top {
+  background-color: #f3f0fa;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  text-align: center;
+  color: #8870d5;
+  height: 35px;
+}
+.alerts-bottom {
+  padding: 10px;
+  display: flex;
+  background-color: ghostwhite;
+  text-align: center;
+  align-items: center;
+  height: 40px;
+}
+.text-alert-bottom {
+  padding: 0;
+  margin: 0;
+}
+.link-alert-bottom {
+  align-items: center;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 0;
+  color: royalblue;
+  padding-left: 10%;
+  text-align: center;
+}
+.geral-home-bottom {
+  background-color: ghostwhite;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-bottom: 5%;
+  padding-top: 50px;
+  height: 100%;
+}
+.specialtys {
+  display: block;
+  background-color: #f3f0fa;
+  height: 100px;
+  border-radius: 5px;
+}
+
+.sides {
+  display: flex;
+  padding-top: 5px;
+  font-size: 17px;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 2%;
+  padding-right: 2%;
+}
+.sides li {
+  font-size: 10px;
+}
+.links-side {
+  color: rgba(0, 0, 0, 09);
+  padding: 5px;
+  text-decoration: none;
+  margin: 0;
+}
+.widgets {
+  padding-top: 3%;
+  padding-bottom: 3%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.doctors-info {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px rgba(0, 0, 0, 0.09) solid;
+  width: 100%;
+}
+.left-side {
+  max-width: 50%;
+}
+.left-right {
+  max-width: 50%;
 }

@@ -1,0 +1,13 @@
+.footer-container {
+    display: flex;
+    margin: 0;
+    justify-content: space-between;
+    padding: 5% 0px;
+    padding-left: 5%;
+    padding-right: 5%;
+    border-top: 1px rgba(0, 0, 0, .09) solid;
+}
+footer {
+    background-color: ghostwhite;
+    height: 100%;
+}

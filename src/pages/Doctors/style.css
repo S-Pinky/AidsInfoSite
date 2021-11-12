@@ -1,0 +1,36 @@
+.main {
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.doctors-container {
+   font-size: 9px;
+   
+}
+.content-div {
+    width: 450px;
+}
+
+.infos {
+    width: 470px;
+    margin-left: 65px;
+    margin-right: 65px;
+    text-align: center;
+    align-items: center;
+    border-radius: 5px;
+    background-color: aliceblue;
+}
+.right {
+    margin-top: 10px;
+}
+.more-info {
+    width: 470px;
+    margin-left: 65px;
+    margin-right: 65px;
+    align-items: center;
+}
+.micro-info {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}

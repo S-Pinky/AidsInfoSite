@@ -1,161 +1,313 @@
-import React from 'react'
-import './style.css'
-import { Button, Autocomplete, TextField } from '@material-ui/core';
-import { Apartment, VideocamRounded} from '@material-ui/icons';
-import { specialty } from '../../services/specialty-mock';
-import { doctors } from '../../services/doctors-mock';
+import React, { useState } from "react";
+import "./style.css";
 
-export const Home = () => {
+import { Link } from "react-router-dom";
+import { Button, Autocomplete, TextField, Rating } from "@material-ui/core";
+import {
+  Apartment,
+  VideocamRounded,
+  Search,
+  Favorite,
+  EventAvailable,
+  Schedule,
+  ThumbUpAlt,
+} from "@material-ui/icons";
 
+import { widget } from "../../components/Home/index";
+import { createDoctorInfo } from "../../components/DoctorsHome/index";
+
+import avatar1 from "../../assets/avatar1.png";
+import avatar2 from "../../assets/avatar2.png";
+import avatar3 from "../../assets/avatar3.png";
+import avatar4 from "../../assets/avatar4.png";
+import avatar5 from "../../assets/avatar5.png";
+
+import { specialty } from "../../services/specialty-mock";
+import { cities } from "../../services/cities-mock";
+
+export const Home = ({
+  setSelectCity,
+  setSelectSpecialty,
+  setCheckCrm,
+  selectCity,
+  selectSpecialty,
+}) => {
   //Home igual para todas páginas
-  return( 
+  const [variant, setVariant] = useState("inlocal");
+
+  return (
     <>
-    <div className='geral-home'>
-      <div className='text'>
-        <h3 className='title-text'>Agende Agora Sua Consulta</h3>
-        <p>Mais de 700 mil especialistas de saúde estão prontos para te ajudar</p>
+      {setCheckCrm("")}
+      <div className="geral-home">
+        <div className="text">
+          <h3 className="title-text">Agende Agora Sua Consulta</h3>
+          <p style={{ paddingTop: "5px", margin: "0" }}>
+            Mais de 700 mil especialistas de saúde estão prontos para te ajudar
+          </p>
+        </div>
+        <div className="container">
+          <div className="container-search">
+            <div className="types">
+              <Button
+                color="inherit"
+                variant={variant === "inlocal" ? "contained" : "outlined"}
+                style={{
+                  marginRight: "10px",
+                  height: "45px",
+                  color: "black",
+                  borderRadius: "5px",
+                }}
+                startIcon={<Apartment />}
+                onClick={() => setVariant("inlocal")}
+              >
+                No local
+              </Button>
+              <Button
+                color="inherit"
+                variant={variant === "teleconsult" ? "contained" : "outlined"}
+                style={{
+                  marginRight: "10px",
+                  height: "45px",
+                  color: "black",
+                  borderRadius: "5px",
+                }}
+                startIcon={<VideocamRounded />}
+                onClick={() => setVariant("teleconsult")}
+              >
+                Teleconsulta
+              </Button>
+            </div>
+            <div className="container-input">
+              <Autocomplete
+                style={{ padding: "5px 5px 5px 0px" }}
+                mode=""
+                disablePortal
+                id="combo-box-demo"
+                options={specialty}
+                sx={{ width: "100%" }}
+                renderInput={(params) => (
+                  <TextField
+                    style={{ backgroundColor: "ghostwhite", color: "black" }}
+                    {...params}
+                    onClick={setSelectSpecialty(params.inputProps.value)}
+                    label="nome, especialidade, serviço"
+                  />
+                )}
+              />
+
+              {variant === "inlocal" && (
+                <Autocomplete
+                  style={{ padding: "5px 5px 5px 0px" }}
+                  disablePortal
+                  id="combo-box-demo"
+                  options={cities}
+                  sx={{ width: "100%" }}
+                  renderInput={(params) => (
+                    <TextField
+                      style={{ backgroundColor: "ghostwhite", color: "black" }}
+                      {...params}
+                      onClick={setSelectCity(params.inputProps.value)}
+                      label="p. ex. São Paulo"
+                    />
+                  )}
+                />
+              )}
+
+              <Link
+                to={
+                  selectCity === "" && selectSpecialty === "" ? "/" : "/doctors"
+                }
+                style={{
+                  textDecoration: "none",
+                  cursor:
+                    selectCity === "" && selectSpecialty === ""
+                      ? "default"
+                      : "pointer",
+                }}
+              >
+                <Button
+                  variant="contained"
+                  disabled={selectCity === "" && selectSpecialty === ""}
+                  style={{ height: "58px", margin: "5px", width: "250px" }}
+                  endIcon={<Search />}
+                >
+                  Pesquisar
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+        <div className="container-alerts">
+          <div className="alerts-top">
+            <Favorite style={{ paddingLeft: "10px" }} />
+            <p style={{ paddingLeft: "5px", fontWeight: "bold" }}>
+              Cuide de sua saúde durante a pandemia
+            </p>
+          </div>
+          <div className="alerts-bottom">
+            <p className="text-alert-bottom">
+              Atendimento médico seguro e sem filas
+            </p>
+            <p className="link-alert-bottom" style={{ cursor: "pointer" }}>
+              Receba a ajuda que precisa {"->"}{" "}
+            </p>
+          </div>
+        </div>
       </div>
-      <div className='consultas'>
-        <Button color="primary" variant='contained' style={{marginRight: "10px", height: "45px", backgroundColor: 'ghostwhite', color: 'black'}} startIcon={<Apartment />}>No local</Button>
-        <Button color="primary" variant='outlined' style={{marginRight: "10px", height: "45px", borderColor: 'ghostwhite', color: 'ghostwhite'}} startIcon={<VideocamRounded />}>Teleconsulta</Button>
-        <Autocomplete
-          disablePortal
-          id="combo-box-demo"
-          options={specialty}
-          sx={{ width: 400 }}
-          renderInput={(params) => <TextField {...params} label="Movie" />}
-        />
+      <div className="geral-home-bottom">
+        <div className="specialtys">
+          <div className="sides">
+            <Link to="/" className="links-side">
+              Ginecologista
+            </Link>
+            <li />
+            <Link to="/" className="links-side">
+              Psiquiatra
+            </Link>
+            <li />
+            <Link to="/" className="links-side">
+              Psicólogo
+            </Link>
+            <li />
+            <Link to="/" className="links-side">
+              Dermatologista
+            </Link>
+            <li />
+            <Link to="/" className="links-side">
+              Ortopedista
+            </Link>
+            <li />
+            <Link to="/" className="links-side">
+              Endocrinologista
+            </Link>
+            <li />
+            <Link to="/" className="links-side">
+              Oftalmologista
+            </Link>
+            <li />
+            <Link to="/" className="links-side">
+              {" "}
+              Cardiologista
+            </Link>
+          </div>
+          <div className="sides">
+            <Link to="/" className="links-side">
+              Dentista
+            </Link>
+            <li />
+            <Link to="/" className="links-side">
+              Neurologista
+            </Link>
+            <li />
+            <Link to="/" className="links-side">
+              Nutricionista
+            </Link>
+            <li />
+            <Link to="/" className="links-side">
+              Urologista
+            </Link>
+            <li />
+            <Link to="/" className="links-side">
+              Homeopata
+            </Link>
+            <li />
+            <Link to="/" className="links-side">
+              Educador Físico
+            </Link>
+            <li />
+            <Link to="/" className="links-side">
+              Radiologista
+            </Link>
+          </div>
+        </div>
+        <div className="widgets">
+          {widget(
+            <Search style={{ color: "#01c4a6", fontSize: 35 }} />,
+            "Encontre Especialistas",
+            "Busque por especialistas de saúde em sua região. Filtre por planos de saúde, tratamentos ou disponibilidade."
+          )}
+          {widget(
+            <EventAvailable style={{ color: "#01c4a6", fontSize: 35 }} />,
+            "Marque Consultas",
+            "Escolha o profissional, dia e horário que desejar, agendando sua consulta em até dois minutos. Sem complicação."
+          )}
+          {widget(
+            <Schedule style={{ color: "#01c4a6", fontSize: 35 }} />,
+            "Receba lembretes",
+            "Confirmamos tudo imediatamente pelo email informado e, antes da consulta, um lembrete será enviado via celular."
+          )}
+          {widget(
+            <ThumbUpAlt style={{ color: "#01c4a6", fontSize: 35 }} />,
+            "Avalie o serviço",
+            "Após a consulta você poderá deixar sua opinião sobre o serviço. Tudo isso de forma gratuita, simples e rápida."
+          )}
+        </div>
+        <div className="doctors-info">
+          <div className="left-side">
+            <h3>Respostas de especialistas</h3>
+            <p style={{ fontSize: "15px" }}>
+              Qual a chance de desenvolver câncer Orofaringe após o contágio com
+              hpv ?
+            </p>
+            <p
+              style={{
+                color: "GrayText",
+                fontSize: "12px",
+                fontWeight: "bold",
+              }}
+            >
+              RESPOSTA DO ESPECIALISTA DA SAÚDE:{" "}
+            </p>
+            {createDoctorInfo(
+              avatar1,
+              "Dra. Fernanda Martinho Dobrianskyj",
+              "Olá… o desenvolvimento do câncer devido infecção do HPV depende muito do tipo de vírus que foi identificado na lesão. Veja com seu médico se foi feito a tipagem deste vírus. Boa sorte!"
+            )}
+            <p style={{ fontSize: "15px" }}>
+              Quais são os cuidados do pós operatório de uma fístula Liquorica
+              pelo nariz, e quanto tempo dura a recuperação?
+            </p>
+            <p
+              style={{
+                color: "GrayText",
+                fontSize: "12px",
+                fontWeight: "bold",
+              }}
+            >
+              RESPOSTA DO ESPECIALISTA DA SAÚDE:{" "}
+            </p>
+            {createDoctorInfo(
+              avatar2,
+              "Bruno Loof",
+              "Olá, os principais cuidados envolvem evitar qualquer esforço físico, assim como assoar o nariz. O tratamento da fístula liquorica por via nasal, demanda tempo de recuperação que varia de paciente para paciente. Seu cuidado com as medidas que seu médico orientou irá fazer toda a diferença no resultado da cirurgia. Espero ter ajudado."
+            )}
+          </div>
+          <div className="right-side">
+            <h3>Opiniões mais recentes</h3>
+            {createDoctorInfo(
+              avatar3,
+              "Fernando Zahorcsak",
+              "Excelente profissional muito atencioso tenho muita a agradecer palavras são poucas o Dr Fernando passa uma confiança aos seus pacientes",
+              <Rating name="read-only" value={5} readOnly />,
+              "Agnaldo Reis dos Santos"
+            )}
+            {createDoctorInfo(
+              avatar4,
+              "Humberto Dantas",
+              "Hoje foi minha primeira consulta e já gostei muito. Começar o tratamento me sentindo bem segura com o resultado.",
+              <Rating name="read-only" value={5} readOnly />,
+              "Ana Kátia"
+            )}
+            {createDoctorInfo(
+              avatar5,
+              "Beatriz Turquiai Luca Blasio",
+              "Dra. Muito atenciosa e explica muito bem! Gostei da postura dela. Agora vamos dar continuidade ao tratamento para verificar os resultados",
+              <Rating name="read-only" value={5} readOnly />,
+              "Renata Machado"
+            )}
+          </div>
+        </div>
       </div>
-    </div>
-         
     </>
   );
 };
-const top100Films = [
-  { label: 'The Shawshank Redemption', year: 1994 },
-  { label: 'The Godfather', year: 1972 },
-  { label: 'The Godfather: Part II', year: 1974 },
-  { label: 'The Dark Knight', year: 2008 },
-  { label: '12 Angry Men', year: 1957 },
-  { label: "Schindler's List", year: 1993 },
-  { label: 'Pulp Fiction', year: 1994 },
-  {
-    label: 'The Lord of the Rings: The Return of the King',
-    year: 2003,
-  },
-  { label: 'The Good, the Bad and the Ugly', year: 1966 },
-  { label: 'Fight Club', year: 1999 },
-  {
-    label: 'The Lord of the Rings: The Fellowship of the Ring',
-    year: 2001,
-  },
-  {
-    label: 'Star Wars: Episode V - The Empire Strikes Back',
-    year: 1980,
-  },
-  { label: 'Forrest Gump', year: 1994 },
-  { label: 'Inception', year: 2010 },
-  {
-    label: 'The Lord of the Rings: The Two Towers',
-    year: 2002,
-  },
-  { label: "One Flew Over the Cuckoo's Nest", year: 1975 },
-  { label: 'Goodfellas', year: 1990 },
-  { label: 'The Matrix', year: 1999 },
-  { label: 'Seven Samurai', year: 1954 },
-  {
-    label: 'Star Wars: Episode IV - A New Hope',
-    year: 1977,
-  },
-  { label: 'City of God', year: 2002 },
-  { label: 'Se7en', year: 1995 },
-  { label: 'The Silence of the Lambs', year: 1991 },
-  { label: "It's a Wonderful Life", year: 1946 },
-  { label: 'Life Is Beautiful', year: 1997 },
-  { label: 'The Usual Suspects', year: 1995 },
-  { label: 'Léon: The Professional', year: 1994 },
-  { label: 'Spirited Away', year: 2001 },
-  { label: 'Saving Private Ryan', year: 1998 },
-  { label: 'Once Upon a Time in the West', year: 1968 },
-  { label: 'American History X', year: 1998 },
-  { label: 'Interstellar', year: 2014 },
-  { label: 'Casablanca', year: 1942 },
-  { label: 'City Lights', year: 1931 },
-  { label: 'Psycho', year: 1960 },
-  { label: 'The Green Mile', year: 1999 },
-  { label: 'The Intouchables', year: 2011 },
-  { label: 'Modern Times', year: 1936 },
-  { label: 'Raiders of the Lost Ark', year: 1981 },
-  { label: 'Rear Window', year: 1954 },
-  { label: 'The Pianist', year: 2002 },
-  { label: 'The Departed', year: 2006 },
-  { label: 'Terminator 2: Judgment Day', year: 1991 },
-  { label: 'Back to the Future', year: 1985 },
-  { label: 'Whiplash', year: 2014 },
-  { label: 'Gladiator', year: 2000 },
-  { label: 'Memento', year: 2000 },
-  { label: 'The Prestige', year: 2006 },
-  { label: 'The Lion King', year: 1994 },
-  { label: 'Apocalypse Now', year: 1979 },
-  { label: 'Alien', year: 1979 },
-  { label: 'Sunset Boulevard', year: 1950 },
-  {
-    label: 'Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb',
-    year: 1964,
-  },
-  { label: 'The Great Dictator', year: 1940 },
-  { label: 'Cinema Paradiso', year: 1988 },
-  { label: 'The Lives of Others', year: 2006 },
-  { label: 'Grave of the Fireflies', year: 1988 },
-  { label: 'Paths of Glory', year: 1957 },
-  { label: 'Django Unchained', year: 2012 },
-  { label: 'The Shining', year: 1980 },
-  { label: 'WALL·E', year: 2008 },
-  { label: 'American Beauty', year: 1999 },
-  { label: 'The Dark Knight Rises', year: 2012 },
-  { label: 'Princess Mononoke', year: 1997 },
-  { label: 'Aliens', year: 1986 },
-  { label: 'Oldboy', year: 2003 },
-  { label: 'Once Upon a Time in America', year: 1984 },
-  { label: 'Witness for the Prosecution', year: 1957 },
-  { label: 'Das Boot', year: 1981 },
-  { label: 'Citizen Kane', year: 1941 },
-  { label: 'North by Northwest', year: 1959 },
-  { label: 'Vertigo', year: 1958 },
-  {
-    label: 'Star Wars: Episode VI - Return of the Jedi',
-    year: 1983,
-  },
-  { label: 'Reservoir Dogs', year: 1992 },
-  { label: 'Braveheart', year: 1995 },
-  { label: 'M', year: 1931 },
-  { label: 'Requiem for a Dream', year: 2000 },
-  { label: 'Amélie', year: 2001 },
-  { label: 'A Clockwork Orange', year: 1971 },
-  { label: 'Like Stars on Earth', year: 2007 },
-  { label: 'Taxi Driver', year: 1976 },
-  { label: 'Lawrence of Arabia', year: 1962 },
-  { label: 'Double Indemnity', year: 1944 },
-  {
-    label: 'Eternal Sunshine of the Spotless Mind',
-    year: 2004,
-  },
-  { label: 'Amadeus', year: 1984 },
-  { label: 'To Kill a Mockingbird', year: 1962 },
-  { label: 'Toy Story 3', year: 2010 },
-  { label: 'Logan', year: 2017 },
-  { label: 'Full Metal Jacket', year: 1987 },
-  { label: 'Dangal', year: 2016 },
-  { label: 'The Sting', year: 1973 },
-  { label: '2001: A Space Odyssey', year: 1968 },
-  { label: "Singin' in the Rain", year: 1952 },
-  { label: 'Toy Story', year: 1995 },
-  { label: 'Bicycle Thieves', year: 1948 },
-  { label: 'The Kid', year: 1921 },
-  { label: 'Inglourious Basterds', year: 2009 },
-  { label: 'Snatch', year: 2000 },
-  { label: '3 Idiots', year: 2009 },
-  { label: 'Monty Python and the Holy Grail', year: 1975 },
-];
-
-
