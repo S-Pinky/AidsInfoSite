@@ -28,7 +28,7 @@ export const Footer = () => {
         </div>
       </div>
       <div style={{ width: "100%", height: "50px", backgroundColor: "#1A7F79", display: "flex", alignItems: "center", justifyContent: "center" }}>
-        <a style={{ color: "#F2F2F2" }}>https://fernandakelly.vercel.app - @2022</a>
+        <p style={{ color: "#F2F2F2" }}>https://fernandakelly.vercel.app - @2022</p>
       </div>
     </div>
   );
