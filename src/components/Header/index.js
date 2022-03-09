@@ -1,69 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import "./style.css";
 
-import { Link } from "react-router-dom";
-import Logo from "../../assets/logoDoctoraliaBranca.png";
+export default function Header() {
 
-export const Header = () => {
-  return (
-    <header>
-      <div className="logo">
-        <img alt="logo" src={Logo} className="logo-img" />
-        <Link to="/" className="linktext">
-          <h1 className="logo-text">Doctoralia</h1>
-        </Link>
-      </div>
-      <div className="links">
-        <Link to="/" className="linktext">
-          Especialistas
-        </Link>
-        <Link to="/" className="linktext">
-          Exames
-        </Link>
-        <Link to="/" className="linktext">
-          Segurança de Dados
-        </Link>
-        <Link to="/" className="linktext">
-          Pergunte ao Especialista
-        </Link>
-        <section>
-          <details className="list-button">
-            <summary style={{ color: "ghostwhite" }}>Inscrever-se</summary>
-            <section className="options">
-              <div className="option">
-                <Link to="/" className="linktextin">
-                  Como Paciente
-                </Link>
-              </div>
-              <div className="option">
-                <Link to="/" className="linktextin">
-                  Como profissional da Saúde
-                </Link>
-              </div>
-              <div className="option">
-                <Link to="/" className="linktextin">
-                  Como clinica ou hospital
-                </Link>
-              </div>
-            </section>
-          </details>
-        </section>
-        <Link to="#" className="linktext">
-          Entrar
-        </Link>
-        <button
-          style={{
-            backgroundColor: "white",
-            borderRadius: "3px",
-            border: "none",
-            width: "200px",
-            height: "30px",
-            textAlign: "center",
-          }}
-        >
-          Você é profissional de saúde?
-        </button>
-      </div>
-    </header>
-  );
+    const [mobile, setMobile] = useState(false)
+    
+    function HandleClick() {
+        setMobile(!mobile)
+    }
+
+    return (
+        <header style={{position: "fixed", width: "100%"}}>
+            <nav >
+                <a className="logo" href="/">Pro Health</a>
+                <div className={mobile ? "mobile-menu active" : "mobile-menu"} onClick={HandleClick} >
+                    <div className="line1"></div>
+                    <div className="line2"></div>
+                    <div className="line3"></div>
+                </div>
+                <ul className={mobile ? "nav-list active" : "nav-list"} > 
+                    <li><a href="#">Início</a></li>
+                    <li><a href="#">Sobre</a></li>
+                    <li><a href="#">Projetos</a></li>
+                    <li><a href="#">Contato</a></li>
+                </ul>
+            </nav>
+        </header>
+    );
 };
