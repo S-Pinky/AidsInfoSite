@@ -18,7 +18,7 @@ export const Footer = () => {
           <img src={samuel} alt="authorPhoto" className="image-credit" />
           <div style={{ width: "50%" }}>
             <h3 className="infos-title">Samuel - Dev</h3>
-            <p style={{ textAlign: "justify", fontSize: "14px" }}>Sou Samuel Bernardes, formado em Técnico em Informática pelo IFMG, trabalho como estágio em desenvolvimento de software, e em meu tempo livre gosto de jogar online. </p>
+            <p style={{ textAlign: "justify", fontSize: "14px" }}>Sou Samuel Bernardes, formado em Técnico em Informática pelo IFMG, trabalho como estágiario em desenvolvimento de software, e em meu tempo livre gosto de jogar online. </p>
           </div>
         </div>
         <div className="footer-components bibliografia" >
