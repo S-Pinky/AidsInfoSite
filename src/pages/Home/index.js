@@ -1,116 +1,313 @@
-import React from "react";
+import React, { useState } from "react";
 import "./style.css";
-import asset1 from "../../assets/asset1.svg";
-import Infos from "../../components/Infos/Infos";
 
-import { Container, Grid } from "@material-ui/core";
-import { Fingerprint, Favorite, Healing } from "@material-ui/icons";
+import { Link } from "react-router-dom";
+import { Button, Autocomplete, TextField, Rating } from "@material-ui/core";
+import {
+  Apartment,
+  VideocamRounded,
+  Search,
+  Favorite,
+  EventAvailable,
+  Schedule,
+  ThumbUpAlt,
+} from "@material-ui/icons";
 
-export function Blog() {
+import { widget } from "../../components/Home/index";
+import { createDoctorInfo } from "../../components/DoctorsHome/index";
+
+import avatar1 from "../../assets/avatar1.png";
+import avatar2 from "../../assets/avatar2.png";
+import avatar3 from "../../assets/avatar3.png";
+import avatar4 from "../../assets/avatar4.png";
+import avatar5 from "../../assets/avatar5.png";
+
+import { specialty } from "../../services/specialty-mock";
+import { cities } from "../../services/cities-mock";
+
+export const Home = ({
+  setSelectCity,
+  setSelectSpecialty,
+  setCheckCrm,
+  selectCity,
+  selectSpecialty,
+}) => {
+  //Home igual para todas páginas
+  const [variant, setVariant] = useState("inlocal");
+
   return (
-    <div style={{ height: '100%' }}>
-      <Container maxWidth="xl" className="container-initial" align="center" >
-        <Grid container >
-          <Grid item xs={12} lg={7} md={8} >
-            <h1 className="title">
-              Você sabe o que é {" "}
-              <strong style={{ color: "#FF4958" }}>aids</strong> ?
-            </h1>
-            <div style={{ padding: '20px', paddingTop: 0 }}>
-              <p className="text">
-                HIV é a sigla em inglês para vírus da imunodeficiência humana, causador da aids.
-                É uma infecção causada pelo vírus HIV que ataca o sistema imunológico, responsável por
-                defender o organismo de doenças, e faz com que o paciente sofra com os sintomas de
-                neoplasias (infecções causadas por diversos organismos que acometem indivíduos com a
-                imunidade baixa), tornando-o mais suscetível a esses problemas de saúde que podem levar o indivíduo a morte.
-              </p>
+    <>
+      {setCheckCrm("")}
+      <div className="geral-home">
+        <div className="text">
+          <h3 className="title-text">Agende Agora Sua Consulta</h3>
+          <p style={{ paddingTop: "5px", margin: "0" }}>
+            Mais de 700 mil especialistas de saúde estão prontos para te ajudar
+          </p>
+        </div>
+        <div className="container">
+          <div className="container-search">
+            <div className="types">
+              <Button
+                color="inherit"
+                variant={variant === "inlocal" ? "contained" : "outlined"}
+                style={{
+                  marginRight: "10px",
+                  height: "45px",
+                  color: "black",
+                  borderRadius: "5px",
+                }}
+                startIcon={<Apartment />}
+                onClick={() => setVariant("inlocal")}
+              >
+                No local
+              </Button>
+              <Button
+                color="inherit"
+                variant={variant === "teleconsult" ? "contained" : "outlined"}
+                style={{
+                  marginRight: "10px",
+                  height: "45px",
+                  color: "black",
+                  borderRadius: "5px",
+                }}
+                startIcon={<VideocamRounded />}
+                onClick={() => setVariant("teleconsult")}
+              >
+                Teleconsulta
+              </Button>
             </div>
-          </Grid>
-          <Grid item xs={12} lg={5} md={4}>
-            <img className="asset" src={asset1} alt="imagemAsset1" />
-          </Grid>
-        </Grid>
-      </Container>
-      <Container maxWidth="xl" className="container-secondary ">
-        <Grid container align="center" spacing={6}>
-          <Grid item xs={12} lg={4} md={4}>
-            <Healing className="circles" sx={{ fontSize: "60px" }} />
+            <div className="container-input">
+              <Autocomplete
+                style={{ padding: "5px 5px 5px 0px" }}
+                mode=""
+                disablePortal
+                id="combo-box-demo"
+                options={specialty}
+                sx={{ width: "100%" }}
+                renderInput={(params) => (
+                  <TextField
+                    style={{ backgroundColor: "ghostwhite", color: "black" }}
+                    {...params}
+                    onClick={setSelectSpecialty(params.inputProps.value)}
+                    label="nome, especialidade, serviço"
+                  />
+                )}
+              />
 
-            <Infos
-              title="Sintomas"
-              text="Como os sintomas do HIV são bem difíceis de se identificar é importante que caso a pessoa
-              tenha tido algum tipo de exposição de risco ao vírus ela faça imediatamente o teste de HIV, o
-              teste tem o objetivo de detectar a presença do vírus no organismo e deve ser feito após 30
-              dias da exposição de risco ao vírus como contato com sangue ou secreções de pessoas
-              portadoras do vírus ou relações sexuais desprotegidas."
-            />
-          </Grid>
-          <Grid item xs={12} lg={4} md={4}>
-            <Favorite className="circles" sx={{ fontSize: "60px" }} />
+              {variant === "inlocal" && (
+                <Autocomplete
+                  style={{ padding: "5px 5px 5px 0px" }}
+                  disablePortal
+                  id="combo-box-demo"
+                  options={cities}
+                  sx={{ width: "100%" }}
+                  renderInput={(params) => (
+                    <TextField
+                      style={{ backgroundColor: "ghostwhite", color: "black" }}
+                      {...params}
+                      onClick={setSelectCity(params.inputProps.value)}
+                      label="p. ex. São Paulo"
+                    />
+                  )}
+                />
+              )}
 
-            <Infos
-              title="Tratamento"
-              text="O tratamento para o HIV acontece por meio do uso de medicamentos conhecidos
-              como antirretrovirais, que atuam impedindo que o vírus HIV se multiplique de maneira
-              exagerada. Esses medicamentos não são capazes de destruírem por completo o vírus, mas são
-              essenciais para evitar que o sistema imunológico fique gravemente comprometido, e que
-              doenças oportunistas venham a agravar o quadro."
-            />
-          </Grid>
-          <Grid item xs={12} lg={4} md={4}>
-            <Fingerprint className="circles" sx={{ fontSize: "60px" }} />
-
-            <Infos
-              title="Prevenção"
-              text="Além do uso de preservativos masculino ou feminino durante a relação sexual, também é
-              importante estar atento ao uso de agulhas. Nos casos em que a gestante convive com o HIV, é
-              fundamental que a gravidez seja acompanhada por médicos, além do uso de medicamentos.
-              Os tratamentos são realizados por meio de medicamentos, com o objetivo de proteger o
-              sistema imunológico, bloqueando a multiplicação do HIV, o tratamento visa priorizar o bemestar do indivíduo"
-            />
-          </Grid>
-        </Grid>
-      </Container>
-      <Container maxWidth="xl" className="container-initial" style={{ paddingTop: "4%", paddingBottom: "4%" }}>
-        <Grid container align="center" spacing={1}>
-          <Grid item xs={12} lg={6} md={6}>
-            <div style={{ padding: "0px 20px" }}>
-            <h2 style={{ color: "#FF4958", fontSize: "6vh", textAlign: "left" }}>Como ocorre a transmissão? </h2>
-            <p className="text" style={{ margin: 0, fontSize: "2.5vh" }}>
-              O HIV pode ser transmitido de diversas formas, entretanto, a principal forma de transmissão é
-              por via sexual. Além da transmissão por sexo desprotegido, ela também pode ocorrer da mãe
-              para o filho durante a gravidez, parto ou amamentação e por meio do contato com sangue de
-              pessoa infectada. O contato com o sangue pode ocorrer, por exemplo, no compartilhamento
-              de seringas ao se fazer uso de drogas injetáveis, em acidentes de trabalho com profissionais da
-              saúde que manuseiam material contaminado ou mesmo em transfusões de sangue. É
-              importante frisar que beijar, pegar na mão, abraçar, compartilhar objetos, não transmite o
-              HIV, ao menos que haja algum veículo de transmissão pelo sangue durante esse contato, a
-              prevenção da doença pode ser feita através do uso de camisinha durante relações sexuais e o
-              não compartilhamento de objetos que tenham tido contato com o sangue da pessoa infectada
-              como seringas e agulhas. É muito importante que todas as gestantes façam o pré-natal para se
-              evitar a transmissão do HIV para o bebê caso a mãe seja HIV positiva.
+              <Link
+                to={
+                  selectCity === "" && selectSpecialty === "" ? "/" : "/doctors"
+                }
+                style={{
+                  textDecoration: "none",
+                  cursor:
+                    selectCity === "" && selectSpecialty === ""
+                      ? "default"
+                      : "pointer",
+                }}
+              >
+                <Button
+                  variant="contained"
+                  disabled={selectCity === "" && selectSpecialty === ""}
+                  style={{ height: "58px", margin: "5px", width: "250px" }}
+                  endIcon={<Search />}
+                >
+                  Pesquisar
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+        <div className="container-alerts">
+          <div className="alerts-top">
+            <Favorite style={{ paddingLeft: "10px" }} />
+            <p style={{ paddingLeft: "5px", fontWeight: "bold" }}>
+              Cuide de sua saúde durante a pandemia
             </p>
-            </div>
-          </Grid>
-          <Grid item xs={12} lg={6} md={6}>
-            <iframe
-              width="100%"
-              style={{ paddingTop: 62 }}
-              height="400"
-              src="https://www.youtube.com/embed/k6C_dpbJ1zc"
-              title="YouTube video player"
-              frameborder="0"
-              modestbranding="1"
-              controls="0"
-              showinfo="0"
-              rel="0"
-              fs="1"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-            ></iframe>
-          </Grid>
-        </Grid>
-      </Container>
-    </div >
+          </div>
+          <div className="alerts-bottom">
+            <p className="text-alert-bottom">
+              Atendimento médico seguro e sem filas
+            </p>
+            <p className="link-alert-bottom" style={{ cursor: "pointer" }}>
+              Receba a ajuda que precisa {"->"}{" "}
+            </p>
+          </div>
+        </div>
+      </div>
+      <div className="geral-home-bottom">
+        <div className="specialtys">
+          <div className="sides">
+            <Link to="/" className="links-side">
+              Ginecologista
+            </Link>
+            <li />
+            <Link to="/" className="links-side">
+              Psiquiatra
+            </Link>
+            <li />
+            <Link to="/" className="links-side">
+              Psicólogo
+            </Link>
+            <li />
+            <Link to="/" className="links-side">
+              Dermatologista
+            </Link>
+            <li />
+            <Link to="/" className="links-side">
+              Ortopedista
+            </Link>
+            <li />
+            <Link to="/" className="links-side">
+              Endocrinologista
+            </Link>
+            <li />
+            <Link to="/" className="links-side">
+              Oftalmologista
+            </Link>
+            <li />
+            <Link to="/" className="links-side">
+              {" "}
+              Cardiologista
+            </Link>
+          </div>
+          <div className="sides">
+            <Link to="/" className="links-side">
+              Dentista
+            </Link>
+            <li />
+            <Link to="/" className="links-side">
+              Neurologista
+            </Link>
+            <li />
+            <Link to="/" className="links-side">
+              Nutricionista
+            </Link>
+            <li />
+            <Link to="/" className="links-side">
+              Urologista
+            </Link>
+            <li />
+            <Link to="/" className="links-side">
+              Homeopata
+            </Link>
+            <li />
+            <Link to="/" className="links-side">
+              Educador Físico
+            </Link>
+            <li />
+            <Link to="/" className="links-side">
+              Radiologista
+            </Link>
+          </div>
+        </div>
+        <div className="widgets">
+          {widget(
+            <Search style={{ color: "#01c4a6", fontSize: 35 }} />,
+            "Encontre Especialistas",
+            "Busque por especialistas de saúde em sua região. Filtre por planos de saúde, tratamentos ou disponibilidade."
+          )}
+          {widget(
+            <EventAvailable style={{ color: "#01c4a6", fontSize: 35 }} />,
+            "Marque Consultas",
+            "Escolha o profissional, dia e horário que desejar, agendando sua consulta em até dois minutos. Sem complicação."
+          )}
+          {widget(
+            <Schedule style={{ color: "#01c4a6", fontSize: 35 }} />,
+            "Receba lembretes",
+            "Confirmamos tudo imediatamente pelo email informado e, antes da consulta, um lembrete será enviado via celular."
+          )}
+          {widget(
+            <ThumbUpAlt style={{ color: "#01c4a6", fontSize: 35 }} />,
+            "Avalie o serviço",
+            "Após a consulta você poderá deixar sua opinião sobre o serviço. Tudo isso de forma gratuita, simples e rápida."
+          )}
+        </div>
+        <div className="doctors-info">
+          <div className="left-side">
+            <h3>Respostas de especialistas</h3>
+            <p style={{ fontSize: "15px" }}>
+              Qual a chance de desenvolver câncer Orofaringe após o contágio com
+              hpv ?
+            </p>
+            <p
+              style={{
+                color: "GrayText",
+                fontSize: "12px",
+                fontWeight: "bold",
+              }}
+            >
+              RESPOSTA DO ESPECIALISTA DA SAÚDE:{" "}
+            </p>
+            {createDoctorInfo(
+              avatar1,
+              "Dra. Fernanda Martinho Dobrianskyj",
+              "Olá… o desenvolvimento do câncer devido infecção do HPV depende muito do tipo de vírus que foi identificado na lesão. Veja com seu médico se foi feito a tipagem deste vírus. Boa sorte!"
+            )}
+            <p style={{ fontSize: "15px" }}>
+              Quais são os cuidados do pós operatório de uma fístula Liquorica
+              pelo nariz, e quanto tempo dura a recuperação?
+            </p>
+            <p
+              style={{
+                color: "GrayText",
+                fontSize: "12px",
+                fontWeight: "bold",
+              }}
+            >
+              RESPOSTA DO ESPECIALISTA DA SAÚDE:{" "}
+            </p>
+            {createDoctorInfo(
+              avatar2,
+              "Bruno Loof",
+              "Olá, os principais cuidados envolvem evitar qualquer esforço físico, assim como assoar o nariz. O tratamento da fístula liquorica por via nasal, demanda tempo de recuperação que varia de paciente para paciente. Seu cuidado com as medidas que seu médico orientou irá fazer toda a diferença no resultado da cirurgia. Espero ter ajudado."
+            )}
+          </div>
+          <div className="right-side">
+            <h3>Opiniões mais recentes</h3>
+            {createDoctorInfo(
+              avatar3,
+              "Fernando Zahorcsak",
+              "Excelente profissional muito atencioso tenho muita a agradecer palavras são poucas o Dr Fernando passa uma confiança aos seus pacientes",
+              <Rating name="read-only" value={5} readOnly />,
+              "Agnaldo Reis dos Santos"
+            )}
+            {createDoctorInfo(
+              avatar4,
+              "Humberto Dantas",
+              "Hoje foi minha primeira consulta e já gostei muito. Começar o tratamento me sentindo bem segura com o resultado.",
+              <Rating name="read-only" value={5} readOnly />,
+              "Ana Kátia"
+            )}
+            {createDoctorInfo(
+              avatar5,
+              "Beatriz Turquiai Luca Blasio",
+              "Dra. Muito atenciosa e explica muito bem! Gostei da postura dela. Agora vamos dar continuidade ao tratamento para verificar os resultados",
+              <Rating name="read-only" value={5} readOnly />,
+              "Renata Machado"
+            )}
+          </div>
+        </div>
+      </div>
+    </>
   );
-}
+};

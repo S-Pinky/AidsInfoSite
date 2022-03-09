@@ -1,0 +1,16 @@
+.content-widget {
+    padding: 5px;
+    padding-top: 25px;
+    width: 100%;
+}
+.top-side {
+    display: flex;
+    font-size: 18px;
+    align-items: center;
+    padding: 0;
+}
+
+.bottom-side {
+    font-size: 2.5vh;
+    margin: 5px;
+}

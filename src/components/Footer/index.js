@@ -1,36 +1,86 @@
 import React from "react";
 import "./style.css";
-import { Container } from "@material-ui/core";
-import fernanda from "../../assets/Fernanda.jpg"
-import samuel from "../../assets/bob.jpg"
+import Logo from "../../assets/logoDoctoralia.png";
+import { Facebook, Instagram, LinkedIn, PhoneIphone } from "@material-ui/icons";
+import { FooterBoxes } from "./footerComponents";
 
 export const Footer = () => {
   return (
-    <div style={{width: '100%'}}>
-      <div className="footer-container" >
-        <div className="footer-components">
-          <img src={fernanda} alt="authorPhoto" className="image-credit" />
-          <div style={{ width: "50%" }}>
-            <h3 className="infos-title">Fernanda - Autora</h3>
-            <p style={{ textAlign: "justify", fontSize: "14px" }}>Sou Fernanda Kelly, aluna da Escola Técnica em Enfermagem de Minas Gerais, gosto de ler e me informar sobre assuntos relacionados à saúde visando proporcionar informações confiáveis aos leitores.</p>
+    <footer>
+      <div className="footer-container">
+        {FooterBoxes("Serviço", [
+          "Privacidade e cookies",
+          "Quem somos",
+          "Contato",
+          "Vagas",
+          "Termos e Condições",
+          "Imprensa",
+        ])}
+        {FooterBoxes("Pacientes", [
+          "Especialistas",
+          "Clínicas e Hospitais",
+          "Pergunte ao especialista",
+          "Medicamentos",
+          "Serviços",
+          "Perguntas frequentes",
+          "Aplicações Móveis",
+          "Diagnósticos por imagem",
+        ])}
+        {FooterBoxes("Especialistas da saúde", [
+          "Blog",
+          "Counteúdos para especialistas",
+          "Serviços",
+          "Biblioteca Virtual",
+          "Widget para site",
+          "Counteúdos para clínicas",
+          "Central de Ajuda para Especialistas",
+          "Termos de uso do perfil profissional",
+          "Alerta de segurança",
+          "Teleconsulta",
+        ])}
+        <div>
+          {FooterBoxes(
+            <img
+              src={Logo}
+              style={{ width: "25px", height: "25px" }}
+              alt="logo"
+            />,
+            [
+              "Doctoralia Brasil Serviços Online e Software Ltda",
+              "Rua Visconde do Rio Branco, 1488 - 2º andar - Batel",
+              "80420-210 Curitiba (Paraná), Brasil",
+            ],
+            <h4
+              style={{
+                margin: "0px 0px 0px 5px",
+                color: "#01c4a6",
+                fontSize: "27px",
+              }}
+            >
+              Doctoralia
+            </h4>
+          )}
+          <div className="social">
+            <a href="https://www.facebook.com/doctoralia.br/">
+              <Facebook style={{ color: "gray", fontSize: 35 }} />
+            </a>
+            <a href="https://www.instagram.com/doctoralia_br/">
+              <Instagram style={{ color: "gray", fontSize: 35 }} />
+            </a>
+            <a href="https://www.linkedin.com/company/doctoralia-brasil/">
+              <LinkedIn style={{ color: "gray", fontSize: 35 }} />
+            </a>
+            <a href="https://www.facebook.com/doctoralia.br/">
+              <PhoneIphone style={{ color: "gray", fontSize: 35 }} />
+            </a>
           </div>
         </div>
-        <div className="footer-components">
-          <img src={samuel} alt="authorPhoto" className="image-credit" />
-          <div style={{ width: "50%" }}>
-            <h3 className="infos-title">Samuel - Bob</h3>
-            <p style={{ textAlign: "justify", fontSize: "14px" }}>Sou Samuel Bernardes, formado em Técnico em Informática pelo IFMG, trabalho como estágio em desenvolvimento de software, e em meu tempo livre gosto de jogar online. </p>
-          </div>
-        </div>
-        <div className="footer-components bibliografia" >
-          <h3 className="infos-title">Bibliografia: </h3>
-          <i style={{ textAlign: "justify", fontSize: "12px" }}>REDE D'OR SÃO LUIZ (org.). AIDS: o que é aids?. O que é aids?. 2022. Disponível em: https://www.rededorsaoluiz.com.br/doencas/aids. Acesso em: 08 mar. 2022.
-            <br /> Ministério da Saúde. O que é HIV: biologia. Biologia. 2022. Disponível em: http://www.aids.gov.br/pt-br/publico-geral/o-que-e-hiv. Acesso em: 08 mar. 2022</i>
-        </div>
       </div>
-      <div style={{ width: "100%", height: "50px", backgroundColor: "#1A7F79", display: "flex", alignItems: "center", justifyContent: "center" }}>
-        <a style={{ color: "#F2F2F2" }}>https://fernandakelly.vercel.app - @2022</a>
+      <div style={{ borderTop: "1px rgba(0, 0, 0, .09) solid" }}>
+        <p style={{ textAlign: "center", margin: "0px", padding: "10px" }}>
+          www.doctoralia.com.br © 2021 - Agende agora sua consulta
+        </p>
       </div>
-    </div>
+    </footer>
   );
 };
