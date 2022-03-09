@@ -4,15 +4,26 @@
 }
 .title {
   color: #fff;
-  font-size: 9vh;
+  font-size: 45px;
   margin-top: 15px;
-  line-height: 1.2;
 }
 
+.subTitle {
+  color: #fff;
+  font-size: 35px;
+  margin-top: 15px
+}
 .text {
   color: #fff;
   margin-top: 25px;
-  font-size: 4vh;
+  font-size: 24px;
+  text-align: justify;
+}
+
+.subText {
+  color: #fff;
+  margin-top: 25px;
+  font-size: 15px;
   text-align: justify;
 }
 
@@ -31,5 +42,15 @@
   border: 1px solid #1A7F79;
   border-radius: 50%;
   padding: 20px;
+}
+
+@media (max-width: 600px) {
+  .title .subTitle{
+    font-size: 24px;
+  }
+  .text .subText {
+    font-size: 15px;
+  }
+
 }
 

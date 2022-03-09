@@ -23,7 +23,7 @@ export const Footer = () => {
         </div>
         <div className="footer-components bibliografia" >
           <h3 className="infos-title">Bibliografia: </h3>
-          <i style={{ textAlign: "justify", fontSize: "12px" }}>REDE D'OR SÃO LUIZ (org.). AIDS: o que é aids?. O que é aids?. 2022. Disponível em: https://www.rededorsaoluiz.com.br/doencas/aids. Acesso em: 08 mar. 2022.
+          <i className="bibliografia-text">REDE D'OR SÃO LUIZ (org.). AIDS: o que é aids?. O que é aids?. 2022. Disponível em: https://www.rededorsaoluiz.com.br/doencas/aids. Acesso em: 08 mar. 2022.
             <br /> Ministério da Saúde. O que é HIV: biologia. Biologia. 2022. Disponível em: http://www.aids.gov.br/pt-br/publico-geral/o-que-e-hiv. Acesso em: 08 mar. 2022</i>
         </div>
       </div>

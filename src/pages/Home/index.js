@@ -82,8 +82,8 @@ export function Blog() {
         <Grid container align="center" spacing={1}>
           <Grid item xs={12} lg={6} md={6}>
             <div style={{ padding: "0px 20px" }}>
-              <h2 style={{ color: "#FF4958", fontSize: "6vh", textAlign: "left" }}>Como ocorre a transmissão? </h2>
-              <p className="text" style={{ margin: 0, fontSize: "2.5vh" }}>
+              <h2 style={{ color: "#FF4958" }} className="subTitle">Como ocorre a transmissão? </h2>
+              <p className="subText" >
                 O HIV pode ser transmitido de diversas formas, entretanto, a principal forma de transmissão é
                 por via sexual. Além da transmissão por sexo desprotegido, ela também pode ocorrer da mãe
                 para o filho durante a gravidez, parto ou amamentação e por meio do contato com sangue de
