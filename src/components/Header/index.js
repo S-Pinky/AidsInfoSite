@@ -19,10 +19,10 @@ export default function Header() {
                     <div className="line3"></div>
                 </div>
                 <ul className={mobile ? "nav-list active" : "nav-list"} > 
-                    <li><a href="#">Início</a></li>
-                    <li><a href="#">Sobre</a></li>
-                    <li><a href="#">Projetos</a></li>
-                    <li><a href="#">Contato</a></li>
+                    <li><a href="#inicio">Início</a></li>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#entenda">Entenda</a></li>
+                    <li><a href="#creditos">Créditos</a></li>
                 </ul>
             </nav>
         </header>

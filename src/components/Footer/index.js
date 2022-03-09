@@ -1,12 +1,11 @@
 import React from "react";
 import "./style.css";
-import { Container } from "@material-ui/core";
 import fernanda from "../../assets/Fernanda.jpg"
 import samuel from "../../assets/bob.jpg"
 
 export const Footer = () => {
   return (
-    <div style={{width: '100%'}}>
+    <div style={{width: '100%'}} id="creditos">
       <div className="footer-container" >
         <div className="footer-components">
           <img src={fernanda} alt="authorPhoto" className="image-credit" />
@@ -18,7 +17,7 @@ export const Footer = () => {
         <div className="footer-components">
           <img src={samuel} alt="authorPhoto" className="image-credit" />
           <div style={{ width: "50%" }}>
-            <h3 className="infos-title">Samuel - Bob</h3>
+            <h3 className="infos-title">Samuel - Dev</h3>
             <p style={{ textAlign: "justify", fontSize: "14px" }}>Sou Samuel Bernardes, formado em Técnico em Informática pelo IFMG, trabalho como estágio em desenvolvimento de software, e em meu tempo livre gosto de jogar online. </p>
           </div>
         </div>
